@@ -6,6 +6,6 @@ const authRouter = Router();
 
 authRouter.post('/register', Register)
 authRouter.post('/login', Login)
-// authRouter.post('/logout', authMiddleware, Logout)
+authRouter.post('/logout', authMiddleware, Logout)
 
 export default authRouter;

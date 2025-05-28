@@ -58,16 +58,13 @@ export const Login = async (req, res) => {
 }
 
 export const Logout = async (req, res) => {
-    try {
-        const {token} = req.cookies;
-        console.log(token);
-        
-        res.Cookie("token", null, {
+    try { 
+        res.cookie("token", null, {
             expires: new Date(Date.now())
         });
-        console.log('last' + token);
+        
         res.json({message: 'Logout User successfully'})
     } catch (error) {
-        res.status(400).json({message: error.meaasge})
+        res.status(400).json({message: error.message})
     }
 }

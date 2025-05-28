@@ -1,21 +1,22 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import { PORT } from "./config/config.js";
+import cookieParsor from 'cookie-parser'
+import cors from 'cors'
 
 const app = express();
 dotenv.config();
 
-app.get('/', (req, res) => {
-    try {
-        res.json({
-            message: "Hii comming from the root directory"
-        })
-    } catch (error) {
-        res.status(401).json(
-            error
-        )
-    }
-})
+app.use(cors({
+    origin: "",
+    credentials: true
+    
+}))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(cookieParsor())
+
+app.use(errorMiddleware)
 
 
 app.listen(PORT, () => {

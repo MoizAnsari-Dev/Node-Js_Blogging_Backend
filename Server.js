@@ -9,16 +9,13 @@ import errorMiddleware from "./middleware/errorMiddleware.js";
 const app = express();
 dotenv.config();
 
-app.use(cors({
-    origin: "",
-    credentials: true
-    
-}))
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParsor())
 
 app.use(errorMiddleware)
+app.use('/api', )
 
 
 

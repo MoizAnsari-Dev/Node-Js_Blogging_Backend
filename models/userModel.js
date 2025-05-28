@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password can not be empty']
-    }
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
+    },
 }, {timeseries: true})
 
 const userModel = mongoose.model("User", userSchema)

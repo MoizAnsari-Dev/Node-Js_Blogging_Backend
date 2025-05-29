@@ -6,6 +6,7 @@ import cors from 'cors'
 import connectDB from "./config/db.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import authRouter from "./routes/authRoutes.js";
+import postRouter from "./routes/postRouter.js";
 
 const app = express();
 dotenv.config();

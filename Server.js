@@ -17,6 +17,7 @@ app.use(cookieParsor())
 
 app.use(errorMiddleware)
 app.use('/api', authRouter)
+app.use('/api', postRouter)
 
 
 

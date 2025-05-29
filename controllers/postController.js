@@ -26,3 +26,18 @@ export const CreatePost = async (req, res) => {
         })
     }
 }
+
+export const GetPost = async (req, res) => {
+    try {
+        const posts = await postModel.find({status: "draft"}).populate('auther', "firstName",)
+        if(!posts) return res.json({message: "No post found"})
+        
+        res.json({
+            GetPost: posts
+        })
+    } catch (error) {
+        res.status(401).json({
+            message: error.message
+        })
+    }
+}

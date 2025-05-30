@@ -1,4 +1,5 @@
 import postModel from "../models/postModel.js"
+import userModel from "../models/userModel.js";
 
 export const CreatePost = async (req, res) => {
     try {
@@ -76,6 +77,26 @@ export const CommentPost = async (req, res) => {
 
         res.status(201).json({
             newComment: post.comments
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export const userPost = async (req, res) => {
+    try {
+        const {id, firstName, lastName} = req.user
+        if(!id) return res.json({message: 'can not find user Id'});
+        const findPost = await postModel.find({auther: id}).populate();
+        if(!findPost) return res.json({message: 'User has NO posts'})
+        console.log(findPost.length)
+        res.json({
+            firstName: firstName,
+            lastName: lastName,
+            totalPosts: findPost.length,
+            data: findPost
         })
     } catch (error) {
         res.status(500).json({

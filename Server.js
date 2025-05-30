@@ -1,6 +1,6 @@
 import express, { urlencoded } from "express";
 import dotenv from "dotenv";
-import { PORT } from "./config/config.js";
+import { limiter, PORT } from "./config/config.js";
 import cookieParsor from 'cookie-parser'
 import cors from 'cors'
 import connectDB from "./config/db.js";
@@ -16,6 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParsor())
 
+app.use(limiter)
 app.use(errorMiddleware)
 app.use('/api', authRouter)
 app.use('/api', postRouter)

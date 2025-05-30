@@ -5,8 +5,10 @@ import authMiddleware from "../middleware/authmiddleware.js";
 const postRouter = Router();
 
 postRouter.post('/createPost', authMiddleware, CreatePost)
+
+
 postRouter.get('/getPost', authMiddleware, GetPost)
-postRouter.post('/:id/likes', authMiddleware, LikePost)
-postRouter.post('/:id/comments', authMiddleware, CommentPost)
+postRouter.post('/:idPost/likes', authMiddleware, LikePost)
+postRouter.post('/:idPost/comments', authMiddleware, CommentPost)
 
 export default postRouter;

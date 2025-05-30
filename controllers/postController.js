@@ -44,9 +44,9 @@ export const GetPost = async (req, res) => {
 
 export const LikePost = async (req, res) => {
     try {
-        console.log(req.params.id);
+        console.log(req.params.idPost);
         
-        const post = await postModel.findById(req.params.id);
+        const post = await postModel.findById(req.params.idPost);
         if (!post) return res.json({message: 'No like posts found'});
 
         if(post.likes.includes(req.user.id)) {
@@ -65,7 +65,7 @@ export const LikePost = async (req, res) => {
 
 export const CommentPost = async (req, res) => {
     try {
-        const post = await postModel.findById(req.params.id);
+        const post = await postModel.findById(req.params.idPost);
         if(!post) return res.json({message: 'No comment found'});
 
         post.comments.push({

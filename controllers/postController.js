@@ -62,3 +62,24 @@ export const LikePost = async (req, res) => {
         })
     }
 }
+
+export const CommentPost = async (req, res) => {
+    try {
+        const post = await postModel.findById(req.params.id);
+        if(!post) return res.json({message: 'No comment found'});
+
+        post.comments.push({
+            user: req.user.id,
+            text: req.body.text
+        })
+        await post.save()
+
+        res.status(201).json({
+            newComment: post.comments
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}

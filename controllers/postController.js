@@ -32,6 +32,9 @@ export const GetPost = async (req, res) => {
         const posts = await postModel.find({status: "draft"}).populate('auther', "firstName",)
         if(!posts) return res.json({message: "No post found"})
         
+        console.log(...isPost);
+        
+        
         res.json({
             GetPost: posts
         })

@@ -1,5 +1,4 @@
 import express, { urlencoded } from "express";
-import dotenv from "dotenv";
 import { limiter, PORT } from "./config/config.js";
 import cookieParsor from 'cookie-parser'
 import cors from 'cors'
@@ -9,7 +8,6 @@ import authRouter from "./routes/authRoutes.js";
 import postRouter from "./routes/postRouter.js";
 
 const app = express();
-dotenv.config();
 
 app.use(cors())
 app.use(express.json())

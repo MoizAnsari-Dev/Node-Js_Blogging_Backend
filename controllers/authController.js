@@ -12,7 +12,7 @@ export const Register = async (req, res) => {
         if (!password) return res.json({message: 'Password name is not empty please fill it'});// checking if password is empty
 
         const userExist = await userModel.findOne({email})// checking if user already exists
-        if(userExist) return res.status(409).json({meaasge: "EmailID already exist please LOGIN"});// checking if user already exists
+        if(userExist) return res.status(409).json({meaasge: "Email ID already exist please LOGIN"});// checking if user already exists
 
         const hashPassword = await bcrypt.hash(password, 10)// hashing the password with bcrypt
         const newUser = await userModel.create({ // creating a new user

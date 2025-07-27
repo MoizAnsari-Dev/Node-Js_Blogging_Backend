@@ -49,7 +49,9 @@ export const Login = async (req, res) => {
         const token = jwt.sign({id: user._id}, JWT_SECRET, {expiresIn: '1d'})
         res.cookie('token', token)
 
-        res.status(201).json({message: 'User loged in successfully'})
+        res.status(201).json({message: 'User loged in successfully',
+            Hi: user.firstName
+        })
     } catch(error) {
         res.status(500).json({
             message: 'Can not login: ' + error.meaasge

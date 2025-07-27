@@ -5,10 +5,10 @@ import { MONGODB_URI } from './config.js';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI);
-    console.log('MongoDB connected');
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
+    const conn = await mongoose.connect(MONGODB_URI);
+    console.log(`MongoDB connected: ${conn.connection.host}`);
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
     process.exit(1);
   }
 };

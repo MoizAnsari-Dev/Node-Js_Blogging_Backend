@@ -3,18 +3,22 @@ version: '3.8'
 services:
   backend:
     build: .
+    container_name: nodejs_backend
     ports:
       - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/Backend
+      - JWT_SECRET=your_jwt_secret
+      - PORT=3000
     depends_on:
       - mongo
-    env_file:
-      - ./.env
-
 
   mongo:
-    image: mongo
-    container_name: mongo
+    image: mongo:6
+    container_name: mongodb
+    restart: always
     ports:
       - "27017:27017"
+
 volumes:
-  mongo-data:
+  mongo_data:

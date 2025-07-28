@@ -1,21 +1,23 @@
-# 1. Select the base image
-FROM node
+# Use official Node.js LTS image
+FROM node:18
 
-# 2. Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# 3. Copy package.json and package-lock.json
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# 4. Install application dependencies
-# Use --omit=dev in production to skip installing devDependencies
-RUN npm install --omit=dev
+# Install dependencies
+RUN npm install
 
-# 5. Copy the rest of your application code
+# Copy the rest of the application code
 COPY . .
 
-# 6. Expose the port the app runs on
+# Copy .env file if present
+COPY .env .env
+
+# Expose the port (default 3000)
 EXPOSE 3000
 
-# 7. Define the command to start the app
-CMD [ "node", "Server.js" ]
+# Start the application
+CMD ["node", "Server.js"]

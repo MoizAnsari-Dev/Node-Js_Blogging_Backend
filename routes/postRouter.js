@@ -6,7 +6,6 @@ const postRouter = Router();
 
 postRouter.post('/createPost', authMiddleware, CreatePost)
 
-
 postRouter.get('/getPost', authMiddleware, GetPost)
 
 postRouter.post('/:idPost/likes', authMiddleware, LikePost)

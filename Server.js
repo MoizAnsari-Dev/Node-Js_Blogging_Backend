@@ -20,7 +20,6 @@ app.use('/api', authRouter)
 app.use('/api', postRouter)
 
 
-
 app.listen(PORT, async () => {
     await connectDB();
     console.log(`Server is LIVE at ${PORT}`)
